@@ -75,9 +75,8 @@ vector<Node> AStar::search(Node start, Node goal)
 
 			/*If the next node is not in the closed list or the cost is less than the current cost for that node */
 			if (!closed.count(next) || cost < closed[next].getCost()) {
-				Node current_copy = current;
-				current_copy.setCost(cost);
-				closed.emplace(next, current_copy); //put the node in the closed set
+				current.setCost(cost);
+				closed.emplace(next, current); //put the node in the closed set
 				/* adjust the priority of the next node */
 				double priority = static_cast<double>(cost) + ((m_grid->GetMovementType() == Grid::movementType::EIGHT_DIRECTIONS) ? EuclideanHeuristic(next, goal) : ManhattanHeuristic(next, goal));
 				next.setPriority(priority);
